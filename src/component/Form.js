@@ -19,7 +19,8 @@ const FormCtrDiv = styled.div`
 
 
 const DateForm = (props) => {
-  const {values,errors,touched,status,setFieldValue,setFieldTouched,getData} = props;
+  // console.log("This is the DateForm props:",props);
+  const {values,errors,touched,status,setFieldValue,setFieldTouched,setFieldError,getData} = props;
   // const [data, setData] = useState({});
   
   // useEffect(() => {
@@ -38,14 +39,14 @@ const DateForm = (props) => {
   useEffect(() => {
     if(status) {
       let date = status.dateState;
-      console.log("In useEffect in Form.js and date is:",date);
+      // console.log("In useEffect in DateForm and date is:",date);
 
       let month = (date.getMonth()+1)<10 ? "0"+(date.getMonth()+1) : ""+(date.getMonth()+1);
       let day = (date.getDate()<10 ? "0"+date.getDate() : date.getDate());
       let year = date.getFullYear();
       let dateString = ""+year+"-"+month+"-"+day;
 
-      console.log("In useEffect in Form.js and dateString is:",dateString);
+      // console.log("In useEffect in DateForm and dateString is:",dateString);
 
       getData(dateString);
     }
@@ -54,17 +55,21 @@ const DateForm = (props) => {
 
 
   function handleDateChange(date) {
+    // console.log("In handleDateChange in DateForm and date is:",date);
     if(date) {
-      console.log("In handleDateChange in Form.js and date is:",date);
-      setFieldValue("dateState",date,true);
-      setFieldTouched("dateState",true,true);
+      // console.log("if executed")
+      setFieldValue("dateState",date,false);
+      setFieldTouched("dateState",true,false);
+      // setFieldError("dateState",undefined);
+      setFieldError("dateState","");
+      
 
     } else {
-
-      setFieldValue("dateState","",true);
+      // console.log("else executed")
+      setFieldValue("dateState","",false);
+      setFieldError("dateState","Please set a date");
 
     }
-    
   }
 
   return (
@@ -78,7 +83,10 @@ const DateForm = (props) => {
           
 
           <SubmitBtn textDisplay={"Get Picture"}/>
-          
+
+          {/* <p>{`The errors value is:${errors.dateState}`}</p>       */}
+
+
         </Form>
         
       </FormCtrDiv>

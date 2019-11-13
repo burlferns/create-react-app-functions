@@ -24,7 +24,7 @@ const StylP = styled.p`
 function NasaData(props) {
   const {hdurl,title,explanation} = props.nasaData;
   const {date,error,isFetching} = props;
-  console.log("In NasaData. title:",title,"  isFetching:",isFetching,"  error:",error);
+  // console.log("In NasaData. title:",title,"  isFetching:",isFetching,"  error:",error);
 
   if(title!=="" && !error && !isFetching) {
     return (

@@ -53,13 +53,13 @@ function reducer(state=initialState,action) {
   // console.log("In reducer and initialState is:",initialState);
   switch(action.type) {
     case FETCH_START: {
-      console.log("In reducer and action.payload is:",action.payload);
+      // console.log("In reducer and action.payload is:",action.payload);
       const newState = {
         ...state,
         isFetching: true,
         date: action.payload,
       } 
-      console.log("In FETCH_START & newState is:",newState);
+      // console.log("In FETCH_START & newState is:",newState);
       return newState;
     }
     
